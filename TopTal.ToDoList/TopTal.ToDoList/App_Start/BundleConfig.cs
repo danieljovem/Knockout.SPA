@@ -20,12 +20,12 @@ namespace TopTal.ToDoList
                 "~/Scripts/app/app.bindings.js",
                 "~/Scripts/app/app.datamodel.js",
                 "~/Scripts/app/app.viewmodel.js",
-                "~/Scripts/app/home.viewmodel.js",
-                "~/Scripts/app/login.viewmodel.js",
-                "~/Scripts/app/register.viewmodel.js",
-                "~/Scripts/app/registerExternal.viewmodel.js",
-                "~/Scripts/app/manage.viewmodel.js",
-                "~/Scripts/app/userInfo.viewmodel.js",
+                "~/Scripts/app/home/home.viewmodel.js",
+                "~/Scripts/app/home/userInfo.viewmodel.js",
+                "~/Scripts/app/account/login.viewmodel.js",
+                "~/Scripts/app/account/register.viewmodel.js",
+                "~/Scripts/app/account/registerExternal.viewmodel.js",
+                "~/Scripts/app/account/manage.viewmodel.js",
                 "~/Scripts/app/_run.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
