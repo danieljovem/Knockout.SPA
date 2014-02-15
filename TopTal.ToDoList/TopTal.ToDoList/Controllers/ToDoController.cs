@@ -12,6 +12,7 @@ using TopTal.ToDoList.Models;
 
 namespace TopTal.ToDoList.Controllers
 {
+    [Authorize]
     public class ToDoController : ApiController
     {
         private TopTalToDoListContext db = new TopTalToDoListContext();

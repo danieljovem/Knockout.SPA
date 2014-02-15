@@ -238,6 +238,8 @@
     <Content Include="Scripts\app\account\register.viewmodel.js" />
     <Content Include="Scripts\app\account\registerExternal.viewmodel.js" />
     <Content Include="Scripts\app\home\userInfo.viewmodel.js" />
+    <Content Include="Scripts\app\todo\todo.bindmodel.js" />
+    <Content Include="Scripts\app\todo\todoList.viewmodel.js" />
     <Content Include="Scripts\app\_run.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -302,6 +304,7 @@
     <Content Include="Views\Account\_Manage.cshtml" />
     <Content Include="Views\Account\_Register.cshtml" />
     <Content Include="Views\Account\_RegisterExternal.cshtml" />
+    <Content Include="Views\ToDo\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

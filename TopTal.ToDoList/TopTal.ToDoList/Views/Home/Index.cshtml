@@ -23,12 +23,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <p class="navbar-brand" data-bind="if: !loggedIn()">Application Name</p>
-                    <a href="#" class="navbar-brand" data-bind="if: loggedIn, click: navigateToHome">Application Name</a>
+                    <p class="navbar-brand" data-bind="if: !loggedIn()">TODO List Application</p>
+                    <a href="#" class="navbar-brand" data-bind="if: loggedIn, click: navigateToHome">TODO List Application</a>
                 </div>
                 <div data-bind="if: loggedIn" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="#" data-bind="click: navigateToHome">Home</a></li>
+                        <li><a href="#" data-bind="click: navigateToTodoList">TODO</a></li>
                         <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" data-bind="with: user">
@@ -49,6 +50,7 @@
         @Html.Partial("../Account/_Register")
         @Html.Partial("../Account/_RegisterExternal")
         @Html.Partial("../Account/_Manage")
+        @Html.Partial("../ToDo/_List")
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

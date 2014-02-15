@@ -26,6 +26,8 @@ namespace TopTal.ToDoList
                 "~/Scripts/app/account/register.viewmodel.js",
                 "~/Scripts/app/account/registerExternal.viewmodel.js",
                 "~/Scripts/app/account/manage.viewmodel.js",
+                "~/Scripts/app/todo/todo.bindmodel.js",
+                "~/Scripts/app/todo/todoList.viewmodel.js",
                 "~/Scripts/app/_run.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

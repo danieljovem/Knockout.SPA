@@ -10,7 +10,8 @@
         removeLoginUrl = "/api/Account/RemoveLogin",
         setPasswordUrl = "/api/Account/setPassword",
         siteUrl = "/",
-        userInfoUrl = "/api/Account/UserInfo";
+        userInfoUrl = "/api/Account/UserInfo",
+        todoApi = "/api/ToDo";
 
     // Route operations
     function externalLoginsUrl(returnUrl, generateState) {
@@ -169,6 +170,43 @@
         return $.ajax(setPasswordUrl, {
             type: "POST",
             data: data,
+            headers: getSecurityHeaders()
+        });
+    };
+
+    self.getTodoes = function () {
+        return $.ajax(todoApi, {
+            cache: false,
+            headers: getSecurityHeaders()
+        });
+    };
+
+    self.getTodo = function (id) {
+        return $.ajax(todoApi + "/" + id, {
+            cache: false,
+            headers: getSecurityHeaders()
+        });
+    };
+
+    self.postTodo = function (data) {
+        return $.ajax(todoApi, {
+            type: "POST",
+            data: data,
+            headers: getSecurityHeaders()
+        });
+    };
+
+    self.putTodo = function (id, data) {
+        return $.ajax(todoApi + "/" + id, {
+            type: "PUT",
+            data: data,
+            headers: getSecurityHeaders()
+        });
+    };
+
+    self.deleteTodo = function (id) {
+        return $.ajax(todoApi + "/" + id, {
+            type: "DELETE",
             headers: getSecurityHeaders()
         });
     };

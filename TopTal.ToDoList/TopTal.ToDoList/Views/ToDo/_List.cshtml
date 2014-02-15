@@ -1,0 +1,41 @@
+﻿<!-- ko with: todoList -->
+<div data-bind="visible: loading">Loading...</div>
+<div data-bind="visible: !loading()">
+    <p class="text-success" data-bind="text: message"></p>
+    <h2>Your list of TODOs</h2>
+    <section>
+        <div data-bind="if: todoArray().length >= 0">
+            <h4>Current TODOs</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Description</th>
+                        <th>DueDate</th>
+                        <th>Completed</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: todoArray">
+                    <tr>
+                        @*<td data-bind="text: priority().priorityText"></td>*@
+                        <td><select data-bind="options: $root.todoList().priorityEnum, value: priority, optionsText: 'priorityText'"></select></td>
+                        <td><input data-bind="value: description" /></td>
+                        <td data-bind="text: dueDate"></td>
+                        <td data-bind="text: completed"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button data-bind="click: addTodo">Add new TODO</button>
+        </div>
+    </section>
+    <section>
+        <ul class="text-danger" data-bind="foreach: errors">
+            <li data-bind="text: $data"></li>
+        </ul>
+    </section>
+    <p><a href="#" data-bind="click: home">Home</a> Go back to Home.</p>
+</div>
+
+<!-- /ko -->
+
