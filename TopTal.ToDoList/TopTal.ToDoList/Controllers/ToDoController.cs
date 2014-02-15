@@ -20,14 +20,19 @@ namespace TopTal.ToDoList.Controllers
         // GET api/ToDo
         public IQueryable<ToDo> GetToDoes()
         {
-            return db.ToDoes;
+            var toDoes = db.ToDoes.Where(t => t.Owner == User.Identity.Name);
+
+            return toDoes;
         }
 
         // GET api/ToDo/5
         [ResponseType(typeof(ToDo))]
         public IHttpActionResult GetToDo(int id)
         {
-            ToDo todo = db.ToDoes.Find(id);
+            ToDo todo = db.ToDoes.Where(t => t.Owner == User.Identity.Name)
+                .Where(t => t.Id == id)
+                .SingleOrDefault();
+
             if (todo == null)
             {
                 return NotFound();
@@ -45,6 +50,15 @@ namespace TopTal.ToDoList.Controllers
             }
 
             if (id != todo.Id)
+            {
+                return BadRequest();
+            }
+
+            ToDo oldTodo = db.ToDoes.Where(t => t.Owner == User.Identity.Name)
+                .Where(t => t.Id == id)
+                .SingleOrDefault();
+
+            if (oldTodo.Owner != User.Identity.Name)
             {
                 return BadRequest();
             }
@@ -79,6 +93,9 @@ namespace TopTal.ToDoList.Controllers
                 return BadRequest(ModelState);
             }
 
+            // set owner as the current logged user
+            todo.Owner = User.Identity.Name;
+
             db.ToDoes.Add(todo);
             db.SaveChanges();
 
@@ -89,7 +106,10 @@ namespace TopTal.ToDoList.Controllers
         [ResponseType(typeof(ToDo))]
         public IHttpActionResult DeleteToDo(int id)
         {
-            ToDo todo = db.ToDoes.Find(id);
+            ToDo todo = db.ToDoes.Where(t => t.Owner == User.Identity.Name)
+                .Where(t => t.Id == id)
+                .SingleOrDefault();
+
             if (todo == null)
             {
                 return NotFound();
@@ -112,7 +132,7 @@ namespace TopTal.ToDoList.Controllers
 
         private bool ToDoExists(int id)
         {
-            return db.ToDoes.Count(e => e.Id == id) > 0;
+            return db.ToDoes.Where(t => t.Owner == User.Identity.Name).Count(e => e.Id == id) > 0;
         }
     }
 }

@@ -191,16 +191,18 @@
     self.postTodo = function (data) {
         return $.ajax(todoApi, {
             type: "POST",
-            data: data,
-            headers: getSecurityHeaders()
+            contentType: "application/json",
+            headers: getSecurityHeaders(),
+            data: data
         });
     };
 
     self.putTodo = function (id, data) {
         return $.ajax(todoApi + "/" + id, {
             type: "PUT",
-            data: data,
-            headers: getSecurityHeaders()
+            contentType: "application/json",
+            headers: getSecurityHeaders(),
+            data: data
         });
     };
 

@@ -20,6 +20,11 @@ namespace TopTal.ToDoList.Models
         }
 
         public System.Data.Entity.DbSet<TopTal.ToDoList.Models.ToDo> ToDoes { get; set; }
+    }
     
+    // Declaring (and elsewhere registering) this DB initializer of type MyDbContext - but a DbMigrationsConfiguration already exists for that type.
+    public class TopTalToDoListDatabaseInitializer : DropCreateDatabaseIfModelChanges<TopTalToDoListContext>
+    {
+        protected override void Seed(TopTalToDoListContext context) { }
     }
 }

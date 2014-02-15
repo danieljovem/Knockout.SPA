@@ -4,29 +4,42 @@
     <p class="text-success" data-bind="text: message"></p>
     <h2>Your list of TODOs</h2>
     <section>
+        <div>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Add TODO</label>
+                    <div class="col-md-10">
+                        <input data-bind="value: newTodoDescription"/>
+                    </div>
+                    <div class="col-md-offset-2 col-md-10">
+                        <button data-bind="click: addTodo, disable: saving">addTodo</button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div data-bind="if: todoArray().length >= 0">
             <h4>Current TODOs</h4>
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Completed</th>
                         <th>Priority</th>
                         <th>Description</th>
                         <th>DueDate</th>
-                        <th>Completed</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: todoArray">
                     <tr>
-                        @*<td data-bind="text: priority().priorityText"></td>*@
-                        <td><select data-bind="options: $root.todoList().priorityEnum, value: priority, optionsText: 'priorityText'"></select></td>
+                        <td><input type="checkbox" data-bind="checked: completed" /></td>
+                        <td data-bind="text: priority"></td>
+                        @*<td><select data-bind="options: $root.todoList().priorityEnum, value: priority, optionsText: 'priorityText'"></select></td>*@
                         <td><input data-bind="value: description" /></td>
                         <td data-bind="text: dueDate"></td>
-                        <td data-bind="text: completed"></td>
+                        <td><a href="#" data-bind="click: $root.todoList().removeTodo, disable: $root.todoList().saving">Remove</a></td>
                     </tr>
                 </tbody>
             </table>
-            <button data-bind="click: addTodo">Add new TODO</button>
         </div>
     </section>
     <section>
