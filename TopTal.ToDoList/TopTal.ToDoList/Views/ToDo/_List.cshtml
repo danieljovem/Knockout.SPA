@@ -35,7 +35,7 @@
                         <td data-bind="text: priority"></td>
                         @*<td><select data-bind="options: $root.todoList().priorityEnum, value: priority, optionsText: 'priorityText'"></select></td>*@
                         <td><input data-bind="value: description" /></td>
-                        <td data-bind="text: dueDate"></td>
+                        <td><input data-bind='datepicker: dueDate' /></td>
                         <td><a href="#" data-bind="click: $root.todoList().removeTodo, disable: $root.todoList().saving">Remove</a></td>
                     </tr>
                 </tbody>
