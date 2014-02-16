@@ -31,12 +31,11 @@
                 </thead>
                 <tbody data-bind="foreach: todoArray">
                     <tr>
-                        <td><input type="checkbox" data-bind="checked: completed" /></td>
-                        <td data-bind="text: priority"></td>
-                        @*<td><select data-bind="options: $root.todoList().priorityEnum, value: priority, optionsText: 'priorityText'"></select></td>*@
-                        <td><input data-bind="value: description" /></td>
-                        <td><input data-bind='datepicker: dueDate' /></td>
-                        <td><a href="#" data-bind="click: $root.todoList().removeTodo, disable: $root.todoList().saving">Remove</a></td>
+                        <td><input type="checkbox" data-bind="checked: completed, event: { change: $parent.updateTodo}" /></td>
+                        <td><select data-bind="options: $parent.priorityEnum, value: priority, optionsValue: 'value', optionsText: 'priorityText', event: { change: $parent.updateTodo}"></select></td>
+                        <td><input data-bind="value: description, event: { change: $parent.updateTodo}" /></td>
+                        <td><input data-bind='datepicker: dueDate, event: { change: $parent.updateTodo}' /></td>
+                        <td><a href="#" data-bind="click: $parent.removeTodo, disable: $parent.saving">Remove</a></td>
                     </tr>
                 </tbody>
             </table>

@@ -63,7 +63,12 @@ namespace TopTal.ToDoList.Controllers
                 return BadRequest();
             }
 
-            db.Entry(todo).State = EntityState.Modified;
+            oldTodo.Priority = todo.Priority;
+            oldTodo.Description = todo.Description;
+            oldTodo.DueDate = todo.DueDate;
+            oldTodo.Completed = todo.Completed;
+
+            db.Entry(oldTodo).State = EntityState.Modified;
 
             try
             {

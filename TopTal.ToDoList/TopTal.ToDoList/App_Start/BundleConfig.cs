@@ -43,8 +43,10 @@ namespace TopTal.ToDoList
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-theme.css",
                       "~/Content/bootstrap-datepicker3.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/bootstrap-responsive.css"));
         }
     }
 }

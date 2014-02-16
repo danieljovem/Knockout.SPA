@@ -8,4 +8,5 @@ function TodoBindModel(data) {
     self.dueDate = ko.observable(data.dueDate);
     self.priority = ko.observable(data.priority);
     self.completed = ko.observable(data.completed);
+    self.owner = ko.observable(data.owner);
 }

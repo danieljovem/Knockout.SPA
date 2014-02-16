@@ -8,5 +8,9 @@ ko.bindingHandlers.datepicker = {
 		    todayBtn: "linked",
 		    autoclose: true
 		});
+	},
+	update: function (element, valueAccessor) {
+	    var observable = valueAccessor();
+	    observable($(element).datepicker("getDate"));
 	}
 };
