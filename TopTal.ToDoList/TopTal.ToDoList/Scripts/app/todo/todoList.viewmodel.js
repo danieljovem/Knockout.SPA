@@ -2,6 +2,20 @@
     var self = this,
         startedLoad = false;
 
+    // UI state
+    self.loading = ko.observable(true);
+    self.saving = ko.observable(false);
+    self.message = ko.observable();
+    self.errors = ko.observableArray();
+
+    self.sortingAscending = -1;
+    self.sortingInactive = 0;
+    self.sortingDescending = 1;
+
+    self.sortingByPriority = ko.observable(self.sortingInactive);
+    self.sortingByDescription = ko.observable(self.sortingInactive);
+    self.sortingByDueDate = ko.observable(self.sortingInactive);
+
     // Non-editable catalog data
     self.priorityEnum = [
         { priorityText: "Critical", value: 3 },
@@ -12,12 +26,6 @@
     // Data
     self.newTodoDescription = ko.observable();
     self.todoArray = ko.observableArray();
-
-    // UI state
-    self.loading = ko.observable(true);
-    self.saving = ko.observable(false);
-    self.message = ko.observable();
-    self.errors = ko.observableArray();
 
     // Operations
     self.load = function () { // Load data
@@ -129,6 +137,54 @@
                     app.errors.push("Error deleting ToDo.");
                 }
             });
+    }
+
+    self.sortByPriority = function () {
+        if (self.sortingByPriority() == self.sortingAscending) {
+            self.sortingByPriority(self.sortingDescending);
+        } else {
+            self.sortingByPriority(self.sortingAscending);
+        }
+        self.sortingByDescription(self.sortingInactive);
+        self.sortingByDueDate(self.sortingInactive);
+
+        self.todoArray.sort(function (left, right) {
+            return (left.priority() == right.priority() ? 0 :
+                        (left.priority() < right.priority() ?
+                            self.sortingByPriority() : self.sortingByPriority() * -1));
+        });
+    }
+
+    self.sortByDescription = function () {
+        if (self.sortingByDescription() == self.sortingAscending) {
+            self.sortingByDescription(self.sortingDescending);
+        } else {
+            self.sortingByDescription(self.sortingAscending);
+        }
+        self.sortingByPriority(self.sortingInactive);
+        self.sortingByDueDate(self.sortingInactive);
+
+        self.todoArray.sort(function (left, right) {
+            return (left.description().toLowerCase() == right.description().toLowerCase() ? 0 :
+                        (left.description().toLowerCase() < right.description().toLowerCase() ?
+                            self.sortingByDescription() : self.sortingByDescription() * -1));
+        });
+    }
+
+    self.sortByDueDate = function () {
+        if (self.sortingByDueDate() == self.sortingAscending) {
+            self.sortingByDueDate(self.sortingDescending);
+        } else {
+            self.sortingByDueDate(self.sortingAscending);
+        }
+        self.sortingByDescription(self.sortingInactive);
+        self.sortingByPriority(self.sortingInactive);
+
+        self.todoArray.sort(function (left, right) {
+            return (left.dueDate() == right.dueDate() ? 0 :
+                        (left.dueDate() < right.dueDate() ?
+                            self.sortingByDueDate() : self.sortingByDueDate() * -1));
+        });
     }
 
     self.home = function () {
