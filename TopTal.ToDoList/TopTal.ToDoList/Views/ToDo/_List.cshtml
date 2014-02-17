@@ -42,7 +42,7 @@
                         <td><input type="checkbox" data-bind="checked: completed, event: { change: $parent.updateTodo}" /></td>
                         <td><select data-bind="options: $parent.priorityEnum, value: priority, optionsValue: 'value', optionsText: 'priorityText', event: { change: $parent.updateTodo}"></select></td>
                         <td><input data-bind="value: description, event: { change: $parent.updateTodo}" /></td>
-                        <td><input data-bind='datepicker: dueDate, event: { change: $parent.updateTodo}' /></td>
+                        <td><input data-bind='datepicker: dueDate, event: { change: $parent.patchTodo}' /></td>
                         <td><a href="#" data-bind="click: $parent.removeTodo, disable: $parent.saving">Remove</a></td>
                     </tr>
                 </tbody>

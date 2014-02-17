@@ -126,6 +126,46 @@ namespace TopTal.ToDoList.Controllers
             return Ok(todo);
         }
 
+        // PATCH api/ToDo/5
+        public IHttpActionResult PatchDueDate(int id, PatchDueDateBindingModel data)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            ToDo oldTodo = db.ToDoes.Where(t => t.Owner == User.Identity.Name)
+                .Where(t => t.Id == id)
+                .SingleOrDefault();
+
+            if (oldTodo.Owner != User.Identity.Name)
+            {
+                return BadRequest();
+            }
+
+            oldTodo.DueDate = data.DueDate;
+
+            db.Entry(oldTodo).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ToDoExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok(oldTodo);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

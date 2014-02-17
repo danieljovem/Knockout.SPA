@@ -118,6 +118,35 @@
             });
     }
 
+    self.patchTodo = function (todo) {
+        self.saving(true);
+
+        request = ko.toJSON({ dueDate: todo.dueDate() }, function (key, value) {
+            if (value == null) {
+                return;
+            }
+            else {
+                return value;
+            }
+        });
+
+        dataModel.patchTodo(todo.id(), request)
+            .done(function (response) {
+                self.saving(false);
+            }).failJSON(function (response) {
+                var errors;
+
+                errors = dataModel.toErrorsArray(response);
+                self.saving(false);
+
+                if (errors) {
+                    app.errors(errors);
+                } else {
+                    app.errors.push("Error patching ToDo.");
+                }
+            });
+    }
+
     self.removeTodo = function (todo) {
         self.saving(true);
 

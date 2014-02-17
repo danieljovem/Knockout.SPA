@@ -206,6 +206,15 @@
         });
     };
 
+    self.patchTodo = function (id, data) {
+        return $.ajax(todoApi + "/" + id, {
+            type: "PATCH",
+            contentType: "application/json",
+            headers: getSecurityHeaders(),
+            data: data
+        });
+    };
+
     self.deleteTodo = function (id) {
         return $.ajax(todoApi + "/" + id, {
             type: "DELETE",
