@@ -242,7 +242,6 @@
     <Content Include="Scripts\app\home\userInfo.viewmodel.js" />
     <Content Include="Scripts\app\todo\todo.bindmodel.js" />
     <Content Include="Scripts\app\todo\todoList.viewmodel.js" />
-    <Content Include="Scripts\app\ui.initialize.js" />
     <Content Include="Scripts\app\_run.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
